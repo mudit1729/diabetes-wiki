@@ -99,6 +99,7 @@ def home():
     return render_template(
         "home.html",
         stats=repo.stats(),
+        clinical_tools=repo.clinical_tool_collections(),
         evidence=repo.evidence_collections(),
         domains=repo.domain_collections(),
     )

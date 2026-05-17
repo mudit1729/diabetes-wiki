@@ -274,6 +274,46 @@ class WikiRepository:
                 featured.append(page)
         return featured
 
+    def clinical_tool_collections(self) -> dict[str, list[Page]]:
+        self.refresh()
+        sections = {
+            "Clinical Algorithms": [
+                "wiki/algorithms/overview",
+                "wiki/algorithms/type-2-diabetes-with-ckd",
+                "wiki/algorithms/type-2-diabetes-with-ascvd",
+                "wiki/algorithms/type-2-diabetes-with-heart-failure",
+                "wiki/algorithms/insulin-initiation",
+                "wiki/algorithms/hypoglycemia-risk",
+            ],
+            "Medication Pages": [
+                "wiki/medications/overview",
+                "wiki/medications/semaglutide",
+                "wiki/medications/tirzepatide",
+                "wiki/medications/empagliflozin",
+                "wiki/medications/dapagliflozin",
+                "wiki/medications/metformin",
+                "wiki/medications/basal-insulin",
+                "wiki/medications/sulfonylureas",
+                "wiki/medications/finerenone",
+            ],
+            "Common Clinic Scenarios": [
+                "wiki/scenarios/overview",
+                "wiki/scenarios/a1c-9-ckd-albuminuria",
+                "wiki/scenarios/t2d-obesity-ascvd",
+                "wiki/scenarios/recurrent-hypoglycemia-on-sulfonylurea",
+                "wiki/scenarios/older-adult-low-a1c-on-insulin",
+                "wiki/scenarios/new-insulin-start-primary-care",
+            ],
+            "Evidence Tables": [
+                "wiki/taxonomies/evidence-comparison-tables",
+            ],
+        }
+        collections: dict[str, list[Page]] = {}
+        for label, paths in sections.items():
+            pages = [self.get_page(path) for path in paths]
+            collections[label] = [page for page in pages if page]
+        return {label: pages for label, pages in collections.items() if pages}
+
     def all_tags(self) -> dict[str, int]:
         self.refresh()
         tag_counts: defaultdict[str, int] = defaultdict(int)

@@ -24,6 +24,33 @@
 
   <section class="collections-section">
     <div class="section-heading">
+      <h2>Clinical Tools</h2>
+      <a href="{{ url_for('page', page_path='index') }}" class="see-all">Open index &rarr;</a>
+    </div>
+    <div class="collection-grid clinical-tools-grid">
+      {% for name, pages in clinical_tools.items() %}
+        <div class="collection-card">
+          <div class="collection-header">
+            <h3>{{ name }}</h3>
+            <span class="badge">{{ pages|length }}</span>
+          </div>
+          <ul class="collection-list">
+            {% for p in pages[:6] %}
+              <li>
+                <a href="{{ url_for('page', page_path=p.path) }}">{{ p.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          {% if pages|length > 6 %}
+            <p class="more-count">+{{ pages|length - 6 }} more</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="collections-section">
+    <div class="section-heading">
       <h2>Evidence Collections</h2>
       <a href="{{ url_for('papers') }}" class="see-all">View all &rarr;</a>
     </div>

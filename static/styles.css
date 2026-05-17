@@ -403,6 +403,10 @@ img { max-width: 100%; border-radius: var(--radius-md); }
   gap: 1rem;
 }
 
+.clinical-tools-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
 .collection-card {
   padding: 1.25rem;
   border: 1px solid var(--border);
