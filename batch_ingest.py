@@ -6,9 +6,10 @@ and prints success/failure to stdout. Failures are logged but don't
 stop the batch.
 
 Usage:
-    python batch_ingest.py                  # run all
+    python batch_ingest.py                  # run all, write locally only
     python batch_ingest.py --limit 3        # first 3 only
     python batch_ingest.py --slug sustain-6 # one specific trial
+    python batch_ingest.py --autopush       # commit/push generated pages
 """
 
 from __future__ import annotations
@@ -77,7 +78,6 @@ TRIAL_URLS: list[tuple[str, str, str]] = [
     ("nice-sugar",    "https://pubmed.ncbi.nlm.nih.gov/19318384/", "acute-inpatient"),
 ]
 
-
 def _required_env_missing() -> list[str]:
     missing = [key for key in ("MISTRAL_KEY", "OPENAI_API_KEY") if not os.environ.get(key)]
     if not (os.environ.get("XAI_API_KEY") or os.environ.get("GROK_API_KEY")):
@@ -101,7 +101,7 @@ def _load_oa_overrides() -> dict[str, str]:
     return overrides
 
 
-def run_one(slug: str, url: str, group: str) -> dict:
+def run_one(slug: str, url: str, group: str, *, do_autopush: bool) -> dict:
     print(f"\n{'='*80}")
     print(f"[{slug}]  {url}")
     print(f"{'='*80}")
@@ -109,7 +109,12 @@ def run_one(slug: str, url: str, group: str) -> dict:
     result = {"slug": slug, "url": url, "success": False, "error": None,
               "page_path": None, "citations": 0}
     try:
-        for event_name, payload in ingest_pipeline(url=url, slug_hint=slug, group_hint=group):
+        for event_name, payload in ingest_pipeline(
+            url=url,
+            slug_hint=slug,
+            group_hint=group,
+            do_autopush=do_autopush,
+        ):
             if event_name == "status":
                 stage = payload.get("stage", "?")
                 msg = payload.get("message", "")
@@ -141,6 +146,8 @@ def main():
     parser.add_argument("--start", type=int, default=0, help="Start at index N")
     parser.add_argument("--ignore-missing-env", action="store_true",
                         help="Attempt the run even if required OCR/LLM keys are missing")
+    parser.add_argument("--autopush", action="store_true",
+                        help="Commit and push generated paper pages after each successful ingestion")
     args = parser.parse_args()
 
     missing = _required_env_missing()
@@ -165,11 +172,24 @@ def main():
         targets = [(s, oa_overrides.get(s, u), g) for (s, u, g) in targets]
         print(f"Loaded {len(oa_overrides)} OA PDF override(s) from trial_urls.json")
 
+    blocked = [
+        s for (s, u, _g) in targets
+        if "pubmed.ncbi.nlm.nih.gov" in u and s not in oa_overrides
+    ]
+    if blocked:
+        print("Refusing to OCR PubMed abstract/search URL(s) without OA PDF override:")
+        for slug in blocked:
+            print(f"  - {slug}")
+        print("\nRun find_open_access.py first, use a PMC/direct PDF URL, or pass a single OCR-ready --slug with trial_urls.json.")
+        sys.exit(3)
+
     print(f"Running pipeline for {len(targets)} trials")
+    if not args.autopush:
+        print("Autopush disabled; generated pages will remain local for review.")
 
     results = []
     for slug, url, group in targets:
-        results.append(run_one(slug, url, group))
+        results.append(run_one(slug, url, group, do_autopush=args.autopush))
         # gentle pause between calls to avoid rate limits
         time.sleep(2)
 

@@ -20,6 +20,7 @@ Domain taxonomy for the Diabetes Wiki. Trial and guideline pages should be linke
 - [[wiki/medications/overview|Medication Pages]]
 - [[wiki/scenarios/overview|Common Clinic Scenarios]]
 - [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
+- [[wiki/taxonomies/landmark-evidence-map|Landmark Diabetes Evidence Map]]
 - [[wiki/taxonomies/evidence-ingestion-queue|Evidence Ingestion Queue]]
 - [[wiki/algorithms/type-2-diabetes-with-ckd|Type 2 diabetes with CKD]]
 - [[wiki/algorithms/type-2-diabetes-with-ascvd|Type 2 diabetes with ASCVD or high ASCVD risk]]

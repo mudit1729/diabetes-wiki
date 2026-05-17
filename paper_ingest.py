@@ -6,7 +6,7 @@ Stream events as we move through:
   3. Semantic Scholar lookup (with XAI fallback) → metadata + citations
   4. OpenAI GPT-5.5 streaming summarization → structured wiki draft
   5. GPT-5.5 final integration → polished wiki page
-  6. Write wiki/sources/papers/{slug}.md + .grounding/md_fc/{slug}.md
+  6. Write wiki/sources/papers/{slug}.md + local .grounding/md_fc/{slug}.md cache
 """
 
 from __future__ import annotations
@@ -41,6 +41,7 @@ BIORXIV_RE = re.compile(r"biorxiv\.org/content/([\d./v]+)", re.I)
 ELIFE_RE = re.compile(r"elifesciences\.org/articles/(\d+)", re.I)
 DOI_RE = re.compile(r"(?:doi\.org/|^)(10\.\d{4,9}/[^\s]+)", re.I)
 PMC_RE = re.compile(r"PMC(\d+)", re.I)
+PMC_URL_RE = re.compile(r"pmc\.ncbi\.nlm\.nih\.gov/articles/(PMC\d+)", re.I)
 PUBMED_RE = re.compile(r"pubmed\.ncbi\.nlm\.nih\.gov/(\d+)", re.I)
 
 
@@ -83,6 +84,16 @@ def detect_source(url: str) -> dict:
                 "pdf_url": f"https://journals.plos.org/ploscompbiol/article/file?id={doi}&type=printable",
                 "abs_url": url,
             }
+    if m := PMC_URL_RE.search(url):
+        pmcid = m.group(1).upper()
+        return {
+            "kind": "pmc",
+            "id": pmcid,
+            "pdf_url": f"https://pmc.ncbi.nlm.nih.gov/articles/{pmcid}/pdf/",
+            "abs_url": url,
+        }
+    if m := PUBMED_RE.search(url):
+        return {"kind": "pubmed", "id": m.group(1), "pdf_url": None, "abs_url": url}
     if url.lower().endswith(".pdf"):
         return {"kind": "direct_pdf", "id": None, "pdf_url": url, "abs_url": url}
     if m := DOI_RE.search(url):
@@ -1029,6 +1040,10 @@ def commit_and_push_paper(slug: str, title: str, page_path: Path, ocr_path: Path
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     rel_page = page_path.relative_to(BASE_DIR).as_posix()
     rel_ocr = ocr_path.relative_to(BASE_DIR).as_posix()
+    commit_ocr = os.environ.get("GIT_COMMIT_OCR", "0") == "1"
+    tracked_files = [rel_page]
+    if commit_ocr:
+        tracked_files.append(rel_ocr)
 
     with _GIT_LOCK:
         rc, git_dir_out = _git(["rev-parse", "--git-dir"], BASE_DIR)
@@ -1040,7 +1055,7 @@ def commit_and_push_paper(slug: str, title: str, page_path: Path, ocr_path: Path
             if rc != 0 or "origin" not in remotes:
                 print(f"[git-push] no origin remote: {remotes}")
             else:
-                rc, out = _git(["add", "--", rel_page, rel_ocr], BASE_DIR)
+                rc, out = _git(["add", "--", *tracked_files], BASE_DIR)
                 if rc != 0:
                     return {"ok": False, "stage": "add", "output": out}
                 rc, _ = _git(["diff", "--cached", "--quiet"], BASE_DIR)
@@ -1073,7 +1088,7 @@ def commit_and_push_paper(slug: str, title: str, page_path: Path, ocr_path: Path
             token=token,
             repo=repo,
             branch=branch,
-            files=[(rel_page, page_path.read_bytes()), (rel_ocr, ocr_path.read_bytes())],
+            files=[(rel, (BASE_DIR / rel).read_bytes()) for rel in tracked_files],
             commit_msg=f"Add paper via /add-paper: {title}\n\nslug: {slug}",
             author_name=author_name,
             author_email=author_email,
@@ -1118,6 +1133,11 @@ def ingest_pipeline(
             yield _event("status", stage="source", message=f"Detecting source from URL")
             source_info = detect_source(url)
             yield _event("source", **source_info)
+            if not source_info.get("pdf_url"):
+                raise RuntimeError(
+                    f"{source_info.get('kind')} URL does not expose an OCR-ready PDF. "
+                    "Use an open-access PMC/direct PDF URL or upload the PDF."
+                )
 
         # ── 2. Mistral OCR ────────────────────────────────────────────────
         yield _event("status", stage="ocr", message="Mistral OCR — extracting paper text…")

@@ -66,5 +66,6 @@ These tables are for clinical orientation. They summarize direction and practica
 
 ## Medication and Scenario Links
 
+- [[wiki/taxonomies/landmark-evidence-map|Landmark Diabetes Evidence Map]]
 - [[wiki/medications/overview|Medication Pages]]
 - [[wiki/scenarios/overview|Common Clinic Scenarios]]

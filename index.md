@@ -13,6 +13,7 @@ Navigation hub for the Diabetes Wiki.
 
 - [[wiki/overview|Overview]] — what this wiki covers and how it is organized
 - [[wiki/taxonomies/research-map|Research Map]] — diabetes evidence domains and anchor sources
+- [[wiki/taxonomies/landmark-evidence-map|Landmark Diabetes Evidence Map]] — doctor-facing map of practice-changing papers
 
 ## Guideline Anchors
 
@@ -52,6 +53,7 @@ Navigation hub for the Diabetes Wiki.
 ## Evidence Tables
 
 - [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
+- [[wiki/taxonomies/landmark-evidence-map|Landmark Diabetes Evidence Map]]
 - [[wiki/taxonomies/evidence-ingestion-queue|Evidence Ingestion Queue]]
 
 ## Landmark Trial Anchors

@@ -42,7 +42,7 @@ TRIAL_QUERIES = {
     "flow":                  '"Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes"',
     "surpass-cvot":          '"SURPASS-CVOT" tirzepatide dulaglutide cardiovascular outcomes',
     # SGLT2 cardiorenal outcomes
-    "empa-reg-outcome":      '"Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes"',
+    "empa-reg":              '"Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes"',
     "canvas":                '"Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes"',
     "declare-timi-58":       '"Dapagliflozin and Cardiovascular Outcomes in Type 2 Diabetes"',
     "credence":              '"Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy"',
@@ -140,6 +140,16 @@ def oa_pdf_url(pmcid: str) -> str | None:
         url = m.group(1)
         # OA returns ftp:// — switch to https
         url = url.replace("ftp://", "https://")
+        try:
+            probe = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30, stream=True)
+            chunk = next(probe.iter_content(chunk_size=8), b"")
+            content_type = probe.headers.get("content-type", "")
+            if probe.status_code != 200 or not (
+                chunk.startswith(b"%PDF") or "application/pdf" in content_type
+            ):
+                return None
+        except Exception:
+            return None
         return url
     return None
 

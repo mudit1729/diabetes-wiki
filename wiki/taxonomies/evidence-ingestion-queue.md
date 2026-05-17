@@ -78,4 +78,8 @@ Target corpus for full paper ingestion through Mistral OCR, GPT-5.5 summary/inte
 
 ## Current Blocker
 
-The Diabetes Wiki checkout currently does not have the required local ingestion credentials. Do not hand-write pages and label them as OCR/LLM-ingested.
+The Diabetes Wiki checkout currently has Mistral/XAI credentials from the Neuro Wiki env file but no local `OPENAI_API_KEY`, so the GPT-5.5 summary/integration steps cannot run yet. Do not hand-write pages and label them as OCR/LLM-ingested.
+
+## Interim Evidence Map
+
+- [[wiki/taxonomies/landmark-evidence-map|Landmark Diabetes Evidence Map]] summarizes the multi-agent review pass and tracks source-verification leads.
