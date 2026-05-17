@@ -33,31 +33,75 @@ if env_path.exists():
 from paper_ingest import ingest_pipeline
 
 
-# (slug, url) — URLs prioritize PMC open-access > publisher full-text > PubMed page
-TRIAL_URLS: list[tuple[str, str]] = [
+# (slug, url, domain) — run `find_open_access.py` first when possible; if
+# trial_urls.json has an OA PDF for a slug, batch_ingest will use that PDF URL.
+TRIAL_URLS: list[tuple[str, str, str]] = [
     # Glycemic foundations
-    ("dcct",          "https://pubmed.ncbi.nlm.nih.gov/8366922/"),
-    ("ukpds-34",     "https://pubmed.ncbi.nlm.nih.gov/9742977/"),
-    ("ukpds-80",     "https://pubmed.ncbi.nlm.nih.gov/18784090/"),
-    ("accord",       "https://pubmed.ncbi.nlm.nih.gov/18539917/"),
-    ("advance",      "https://pubmed.ncbi.nlm.nih.gov/18539916/"),
-    ("vadt",         "https://pubmed.ncbi.nlm.nih.gov/19092145/"),
+    ("dcct",          "https://pubmed.ncbi.nlm.nih.gov/8366922/", "insulin-technology"),
+    ("edic-cvd",      "https://pubmed.ncbi.nlm.nih.gov/26861924/", "glycemic-targets"),
+    ("ukpds-33",      "https://pubmed.ncbi.nlm.nih.gov/9742976/", "glycemic-targets"),
+    ("ukpds-34",      "https://pubmed.ncbi.nlm.nih.gov/9742977/", "initial-therapy"),
+    ("ukpds-80",      "https://pubmed.ncbi.nlm.nih.gov/18784090/", "glycemic-targets"),
+    ("accord",        "https://pubmed.ncbi.nlm.nih.gov/18539917/", "glycemic-targets"),
+    ("advance",       "https://pubmed.ncbi.nlm.nih.gov/18539916/", "glycemic-targets"),
+    ("vadt",          "https://pubmed.ncbi.nlm.nih.gov/19092145/", "glycemic-targets"),
+    ("dpp",           "https://pubmed.ncbi.nlm.nih.gov/11832527/", "diagnosis-classification"),
+    ("grade",         "https://pubmed.ncbi.nlm.nih.gov/36129996/", "initial-therapy"),
     # GLP-1 / incretin outcomes
-    ("leader",        "https://pubmed.ncbi.nlm.nih.gov/27295427/"),
-    ("sustain-6",     "https://pubmed.ncbi.nlm.nih.gov/27633186/"),
-    ("rewind",        "https://pubmed.ncbi.nlm.nih.gov/31189511/"),
-    ("flow",          "https://pubmed.ncbi.nlm.nih.gov/38785209/"),
+    ("leader",        "https://pubmed.ncbi.nlm.nih.gov/27295427/", "incretin-therapy"),
+    ("sustain-1",     "https://pubmed.ncbi.nlm.nih.gov/?term=SUSTAIN+1+semaglutide+monotherapy", "incretin-therapy"),
+    ("sustain-2",     "https://pubmed.ncbi.nlm.nih.gov/?term=SUSTAIN+2+semaglutide+sitagliptin", "incretin-therapy"),
+    ("sustain-3",     "https://pubmed.ncbi.nlm.nih.gov/?term=SUSTAIN+3+semaglutide+exenatide", "incretin-therapy"),
+    ("sustain-4",     "https://pubmed.ncbi.nlm.nih.gov/?term=SUSTAIN+4+semaglutide+insulin+glargine", "incretin-therapy"),
+    ("sustain-5",     "https://pmc.ncbi.nlm.nih.gov/articles/PMC5991220/", "incretin-therapy"),
+    ("sustain-6",     "https://pubmed.ncbi.nlm.nih.gov/27633186/", "incretin-therapy"),
+    ("rewind",        "https://pubmed.ncbi.nlm.nih.gov/31189511/", "incretin-therapy"),
+    ("surpass-cvot",  "https://pubmed.ncbi.nlm.nih.gov/?term=SURPASS-CVOT+tirzepatide+dulaglutide+cardiovascular+outcomes", "incretin-therapy"),
+    ("flow",          "https://pubmed.ncbi.nlm.nih.gov/38785209/", "ckd"),
     # SGLT2 outcomes
-    ("empa-reg",      "https://pubmed.ncbi.nlm.nih.gov/26378978/"),
-    ("canvas",        "https://pubmed.ncbi.nlm.nih.gov/28605608/"),
-    ("declare-timi-58","https://pubmed.ncbi.nlm.nih.gov/30415602/"),
-    ("credence",      "https://pubmed.ncbi.nlm.nih.gov/30990260/"),
-    ("dapa-ckd",      "https://pubmed.ncbi.nlm.nih.gov/32970396/"),
-    ("empa-kidney",   "https://pubmed.ncbi.nlm.nih.gov/36331190/"),
+    ("empa-reg",      "https://pubmed.ncbi.nlm.nih.gov/26378978/", "sglt2-therapy"),
+    ("canvas",        "https://pubmed.ncbi.nlm.nih.gov/28605608/", "sglt2-therapy"),
+    ("declare-timi-58","https://pubmed.ncbi.nlm.nih.gov/30415602/", "sglt2-therapy"),
+    ("credence",      "https://pubmed.ncbi.nlm.nih.gov/30990260/", "ckd"),
+    ("dapa-ckd",      "https://pubmed.ncbi.nlm.nih.gov/32970396/", "ckd"),
+    ("empa-kidney",   "https://pubmed.ncbi.nlm.nih.gov/36331190/", "ckd"),
+    # Mineralocorticoid receptor antagonist / residual kidney risk
+    ("fidelio-dkd",   "https://pubmed.ncbi.nlm.nih.gov/33264825/", "ckd"),
+    ("figaro-dkd",   "https://pubmed.ncbi.nlm.nih.gov/34449181/", "ckd"),
+    # Insulin strategy and safety
+    ("origin",        "https://pubmed.ncbi.nlm.nih.gov/22686416/", "insulin-technology"),
+    ("devote",        "https://pubmed.ncbi.nlm.nih.gov/28605603/", "insulin-technology"),
+    # Pregnancy, technology, inpatient
+    ("hapo",          "https://pubmed.ncbi.nlm.nih.gov/18463375/", "pregnancy"),
+    ("wisdm-cgm",     "https://pubmed.ncbi.nlm.nih.gov/?term=WISDM+continuous+glucose+monitoring+older+adults+type+1+diabetes", "insulin-technology"),
+    ("nice-sugar",    "https://pubmed.ncbi.nlm.nih.gov/19318384/", "acute-inpatient"),
 ]
 
 
-def run_one(slug: str, url: str) -> dict:
+def _required_env_missing() -> list[str]:
+    missing = [key for key in ("MISTRAL_KEY", "OPENAI_API_KEY") if not os.environ.get(key)]
+    if not (os.environ.get("XAI_API_KEY") or os.environ.get("GROK_API_KEY")):
+        missing.append("XAI_API_KEY or GROK_API_KEY")
+    return missing
+
+
+def _load_oa_overrides() -> dict[str, str]:
+    import json
+    path = BASE_DIR / "trial_urls.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text())
+    except json.JSONDecodeError:
+        return {}
+    overrides: dict[str, str] = {}
+    for slug, record in data.items():
+        if isinstance(record, dict) and record.get("pdf_url"):
+            overrides[slug] = record["pdf_url"]
+    return overrides
+
+
+def run_one(slug: str, url: str, group: str) -> dict:
     print(f"\n{'='*80}")
     print(f"[{slug}]  {url}")
     print(f"{'='*80}")
@@ -65,7 +109,7 @@ def run_one(slug: str, url: str) -> dict:
     result = {"slug": slug, "url": url, "success": False, "error": None,
               "page_path": None, "citations": 0}
     try:
-        for event_name, payload in ingest_pipeline(url=url, slug_hint=slug):
+        for event_name, payload in ingest_pipeline(url=url, slug_hint=slug, group_hint=group):
             if event_name == "status":
                 stage = payload.get("stage", "?")
                 msg = payload.get("message", "")
@@ -95,22 +139,37 @@ def main():
     parser.add_argument("--limit", type=int, help="Run only first N trials")
     parser.add_argument("--slug", help="Run a single trial by slug")
     parser.add_argument("--start", type=int, default=0, help="Start at index N")
+    parser.add_argument("--ignore-missing-env", action="store_true",
+                        help="Attempt the run even if required OCR/LLM keys are missing")
     args = parser.parse_args()
+
+    missing = _required_env_missing()
+    if missing and not args.ignore_missing_env:
+        print("Missing required ingestion credentials:")
+        for key in missing:
+            print(f"  - {key}")
+        print("\nSet them in .env, then rerun. The full pipeline requires Mistral OCR, GPT-5.5, and Grok/XAI.")
+        sys.exit(2)
 
     targets = TRIAL_URLS
     if args.slug:
-        targets = [(s, u) for (s, u) in TRIAL_URLS if s == args.slug]
+        targets = [(s, u, g) for (s, u, g) in TRIAL_URLS if s == args.slug]
         if not targets:
             print(f"No trial with slug '{args.slug}'")
             sys.exit(1)
     elif args.limit:
         targets = TRIAL_URLS[args.start : args.start + args.limit]
 
+    oa_overrides = _load_oa_overrides()
+    if oa_overrides:
+        targets = [(s, oa_overrides.get(s, u), g) for (s, u, g) in targets]
+        print(f"Loaded {len(oa_overrides)} OA PDF override(s) from trial_urls.json")
+
     print(f"Running pipeline for {len(targets)} trials")
 
     results = []
-    for slug, url in targets:
-        results.append(run_one(slug, url))
+    for slug, url, group in targets:
+        results.append(run_one(slug, url, group))
         # gentle pause between calls to avoid rate limits
         time.sleep(2)
 

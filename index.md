@@ -52,6 +52,7 @@ Navigation hub for the Diabetes Wiki.
 ## Evidence Tables
 
 - [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
+- [[wiki/taxonomies/evidence-ingestion-queue|Evidence Ingestion Queue]]
 
 ## Landmark Trial Anchors
 

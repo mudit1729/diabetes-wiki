@@ -28,6 +28,8 @@ TRIAL_QUERIES = {
     "accord":                '"Effects of intensive glucose lowering in type 2 diabetes" ACCORD 2008',
     "advance":               '"Intensive blood glucose control and vascular outcomes in patients with type 2 diabetes" ADVANCE 2008',
     "vadt":                  '"Glucose control and vascular complications in veterans with type 2 diabetes" Duckworth 2009',
+    "dpp":                   '"Reduction in the incidence of type 2 diabetes with lifestyle intervention or metformin" Knowler 2002',
+    "grade":                 '"Glycemia Reduction in Type 2 Diabetes" GRADE 2022',
     # GLP-1 / incretin therapy
     "leader":                '"Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes" Marso 2016',
     "sustain-1":             '"Efficacy and safety of once-weekly semaglutide monotherapy versus placebo" SUSTAIN 1',
@@ -38,6 +40,7 @@ TRIAL_QUERIES = {
     "sustain-6":             '"Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes"',
     "rewind":                '"Dulaglutide and cardiovascular outcomes in type 2 diabetes" REWIND',
     "flow":                  '"Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes"',
+    "surpass-cvot":          '"SURPASS-CVOT" tirzepatide dulaglutide cardiovascular outcomes',
     # SGLT2 cardiorenal outcomes
     "empa-reg-outcome":      '"Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes"',
     "canvas":                '"Canagliflozin and Cardiovascular and Renal Events in Type 2 Diabetes"',
@@ -45,11 +48,15 @@ TRIAL_QUERIES = {
     "credence":              '"Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy"',
     "dapa-ckd":              '"Dapagliflozin in Patients with Chronic Kidney Disease" Heerspink 2020',
     "empa-kidney":           '"Empagliflozin in Patients with Chronic Kidney Disease" Herrington 2023',
-    # Comparative treatment strategy / technology
-    "grade":                 '"Glycemia Reduction in Type 2 Diabetes" GRADE 2022',
+    # Finerenone / residual albuminuric CKD risk
+    "fidelio-dkd":           '"Effect of Finerenone on Chronic Kidney Disease Outcomes in Type 2 Diabetes" Bakris 2020',
+    "figaro-dkd":            '"Cardiovascular Events with Finerenone in Kidney Disease and Type 2 Diabetes" Pitt 2021',
+    # Comparative treatment strategy / technology / inpatient
     "devote":                '"Insulin Degludec versus Insulin Glargine in Type 2 Diabetes" DEVOTE',
     "origin":                '"Basal insulin and cardiovascular and other outcomes in dysglycemia" ORIGIN',
     "wisdm-cgm":             '"Continuous glucose monitoring in adults with type 1 diabetes" WISDM',
+    "hapo":                  '"Hyperglycemia and Adverse Pregnancy Outcomes" HAPO 2008',
+    "nice-sugar":            '"Intensive versus conventional glucose control in critically ill patients" NICE-SUGAR 2009',
 }
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
