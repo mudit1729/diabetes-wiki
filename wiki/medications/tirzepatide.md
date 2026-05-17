@@ -52,5 +52,5 @@ clinical_review: false
 
 ## Source Links
 
-- DailyMed Mounjaro label: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d2d7da5d-ad07-4228-955f-cf7e355c8cc0
-- FDA Mounjaro drug trial snapshot: https://www.fda.gov/drugs/drug-approvals-and-databases/drug-trials-snapshots-mounjaro
+- [DailyMed Mounjaro label](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d2d7da5d-ad07-4228-955f-cf7e355c8cc0)
+- [FDA Mounjaro drug trial snapshot](https://www.fda.gov/drugs/drug-approvals-and-databases/drug-trials-snapshots-mounjaro)

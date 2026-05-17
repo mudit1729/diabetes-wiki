@@ -52,5 +52,5 @@ clinical_review: false
 
 ## Source Links
 
-- DailyMed Farxiga label: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=40cc4f5d-bcf6-4016-9d1e-838bbc4bdddc
-- ADA Standards resources: https://professional.diabetes.org/standards-of-care/practice-guidelines-resources
+- [DailyMed Farxiga label](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=40cc4f5d-bcf6-4016-9d1e-838bbc4bdddc)
+- [ADA Standards resources](https://professional.diabetes.org/standards-of-care/practice-guidelines-resources)

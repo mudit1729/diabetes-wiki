@@ -51,5 +51,5 @@ clinical_review: false
 
 ## Source Links
 
-- DailyMed metformin label: https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=dc65065b-cba0-46d7-8fb5-3368f3210b4d
-- ADA Standards resources: https://professional.diabetes.org/standards-of-care/practice-guidelines-resources
+- [DailyMed metformin label](https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=dc65065b-cba0-46d7-8fb5-3368f3210b4d)
+- [ADA Standards resources](https://professional.diabetes.org/standards-of-care/practice-guidelines-resources)

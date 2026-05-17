@@ -52,4 +52,4 @@ clinical_review: false
 
 ## Source Links
 
-- DailyMed Kerendia label: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c
+- [DailyMed Kerendia label](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c)

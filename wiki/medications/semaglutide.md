@@ -57,5 +57,5 @@ clinical_review: false
 
 ## Source Links
 
-- ADA Standards resources: https://professional.diabetes.org/standards-of-care/practice-guidelines-resources
-- Ozempic prescribing information: https://www.ozempic.com/prescribing-information.html
+- [ADA Standards resources](https://professional.diabetes.org/standards-of-care/practice-guidelines-resources)
+- [Ozempic prescribing information](https://www.ozempic.com/prescribing-information.html)

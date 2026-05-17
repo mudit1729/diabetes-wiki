@@ -53,5 +53,5 @@ clinical_review: false
 
 ## Source Links
 
-- DailyMed Jardiance label: https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8b6261f6-4bdc-462e-8af1-4064664c62f3
-- ADA Standards resources: https://professional.diabetes.org/standards-of-care/practice-guidelines-resources
+- [DailyMed Jardiance label](https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8b6261f6-4bdc-462e-8af1-4064664c62f3)
+- [ADA Standards resources](https://professional.diabetes.org/standards-of-care/practice-guidelines-resources)
