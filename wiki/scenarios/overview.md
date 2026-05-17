@@ -28,7 +28,12 @@ Case-style pages for applying the wiki evidence at the point of care. These are 
 1. Match the patient to the closest scenario.
 2. Check the linked algorithm.
 3. Check the relevant medication pages.
-4. Adjust for local formulary, cost, pregnancy, CKD stage, frailty, and patient preference.
+4. Read the Paper Citations section to see which trials support the workflow.
+5. Adjust for local formulary, cost, pregnancy, CKD stage, frailty, and patient preference.
+
+## Citation Approach
+
+Scenario recommendations should point back to landmark trials or guideline anchors. The current scenario set uses UKPDS, ACCORD/ADVANCE/VADT, SUSTAIN, GLP-1 CVOTs, SGLT2 CVOTs, CKD outcome trials, and FLOW as the main evidence base.
 
 ## Core Links
 

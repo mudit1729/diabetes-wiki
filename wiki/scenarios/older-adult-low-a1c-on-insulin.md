@@ -43,6 +43,14 @@ Older adult with type 2 diabetes, A1C below or near normal, using basal or basal
 - Continuing complex insulin regimens after falls or severe lows.
 - Stopping all diabetes therapy when the right move is targeted simplification.
 
+## Paper Citations
+
+| Clinical Move | Evidence Anchor |
+|---------------|-----------------|
+| Relax targets and de-intensify when hypoglycemia risk outweighs benefit. | ACCORD/ADVANCE/VADT are the key trial counterweight to "lower is always better" in high-risk type 2 diabetes ([[wiki/trials/accord-advance-vadt|wiki summary]], [ACCORD PubMed](https://pubmed.ncbi.nlm.nih.gov/18539917/), [ADVANCE PubMed](https://pubmed.ncbi.nlm.nih.gov/18539916/)). |
+| Keep a legacy-benefit mindset for appropriate patients, but do not force tight control late. | UKPDS and UKPDS follow-up support early durable control in type 2 diabetes, not unsafe late over-intensification ([[wiki/trials/ukpds|UKPDS]], [UKPDS 34 PubMed](https://pubmed.ncbi.nlm.nih.gov/9742977/)). |
+| Use CGM or structured SMBG when insulin de-intensification decisions are uncertain. | DCCT/EDIC established the value of glycemic control in type 1 diabetes and the parallel need to manage hypoglycemia burden; modern monitoring aims to preserve benefit while reducing harm ([[wiki/trials/dcct-edic|DCCT / EDIC]], [DCCT PubMed](https://pubmed.ncbi.nlm.nih.gov/8366922/)). |
+
 ## Evidence Links
 
 - [[wiki/algorithms/hypoglycemia-risk|Hypoglycemia risk and de-intensification]]

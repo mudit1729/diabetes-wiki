@@ -44,6 +44,15 @@ Type 2 diabetes, A1C about 9%, eGFR 35-60, urine ACR elevated, on metformin or n
 - Starting SGLT2 inhibitor without sick-day/perioperative education.
 - Adding GLP-1 RA without reducing insulin/sulfonylurea if lows are likely.
 
+## Paper Citations
+
+| Clinical Move | Evidence Anchor |
+|---------------|-----------------|
+| Prioritize SGLT2 inhibitor for albuminuric CKD when eligible. | CREDENCE showed kidney outcome benefit with canagliflozin in type 2 diabetes and nephropathy ([PubMed](https://pubmed.ncbi.nlm.nih.gov/30990260/)); DAPA-CKD and EMPA-KIDNEY support kidney protection across CKD populations ([DAPA-CKD PubMed](https://pubmed.ncbi.nlm.nih.gov/32970396/), [EMPA-KIDNEY PubMed](https://pubmed.ncbi.nlm.nih.gov/36331190/)). |
+| Add semaglutide when GLP-1 RA kidney/CV benefit is a priority. | FLOW showed semaglutide reduced major kidney disease events and cardiovascular death in type 2 diabetes with CKD ([FLOW source paper](https://pubmed.ncbi.nlm.nih.gov/38785209/), [[wiki/sources/papers/effects-of-semaglutide-on-chronic-kidney-disease-in-patients-with-type-2-diabetes|wiki summary]]). |
+| Keep metformin only when kidney function and acute illness risk allow. | UKPDS 34 supports metformin as foundational type 2 diabetes therapy in appropriate patients ([PubMed](https://pubmed.ncbi.nlm.nih.gov/9742977/), [[wiki/trials/ukpds|UKPDS]]). |
+| Avoid over-intensifying glucose treatment in high-risk CKD patients. | ACCORD/ADVANCE/VADT caution against aggressive high-burden glycemic lowering in long-duration/high-risk type 2 diabetes ([[wiki/trials/accord-advance-vadt|wiki summary]], [ACCORD PubMed](https://pubmed.ncbi.nlm.nih.gov/18539917/)). |
+
 ## Evidence Links
 
 - [[wiki/algorithms/type-2-diabetes-with-ckd|Type 2 diabetes with CKD]]

@@ -42,6 +42,14 @@ Type 2 diabetes on a sulfonylurea, reporting sweating, tremor, confusion, falls,
 - Keeping sulfonylurea because A1C is "good."
 - Adding more drugs without removing the hypoglycemia driver.
 
+## Paper Citations
+
+| Clinical Move | Evidence Anchor |
+|---------------|-----------------|
+| De-intensify sulfonylurea/insulin when recurrent lows occur. | ACCORD found harm with very intensive glucose lowering in high-risk type 2 diabetes, supporting individualized goals when hypoglycemia-prone treatment is used ([ACCORD PubMed](https://pubmed.ncbi.nlm.nih.gov/18539917/), [[wiki/trials/accord-advance-vadt|wiki summary]]). |
+| Preserve early glycemic benefit but avoid unsafe treatment burden. | UKPDS supports long-term value of glucose control in type 2 diabetes, but does not justify recurrent hypoglycemia in high-risk patients ([UKPDS 34 PubMed](https://pubmed.ncbi.nlm.nih.gov/9742977/), [[wiki/trials/ukpds|UKPDS]]). |
+| Substitute lower-hypoglycemia-risk therapy based on comorbidity. | SGLT2 CVOTs and GLP-1 CVOTs support outcome-driven alternatives with low intrinsic hypoglycemia risk ([[wiki/trials/sglt2-cvot-program|SGLT2 CVOT Program]], [[wiki/trials/glp1-cvot-program|GLP-1 CVOT Program]]). |
+
 ## Evidence Links
 
 - [[wiki/algorithms/hypoglycemia-risk|Hypoglycemia risk and de-intensification]]

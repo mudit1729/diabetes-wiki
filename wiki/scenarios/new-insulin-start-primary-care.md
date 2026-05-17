@@ -45,6 +45,15 @@ Type 2 diabetes with persistent symptomatic hyperglycemia, very high glucose, or
 - What to do for hypoglycemia.
 - When to call the clinic.
 
+## Paper Citations
+
+| Clinical Move | Evidence Anchor |
+|---------------|-----------------|
+| Use insulin promptly for symptomatic/severe hyperglycemia, but do not ignore safer non-insulin sequencing when stable. | UKPDS supports the long-term value of glycemic control in type 2 diabetes, including insulin/sulfonylurea-era evidence ([[wiki/trials/ukpds|UKPDS]]). |
+| Prefer GLP-1 RA before insulin when clinically appropriate and accessible. | SUSTAIN 4 compared semaglutide with insulin glargine in insulin-naive type 2 diabetes, and the broader SUSTAIN program supports semaglutide A1C/weight efficacy ([[wiki/trials/sustain-program|SUSTAIN 1-6]]). |
+| Avoid endless basal insulin escalation when fasting glucose is controlled. | ACCORD/ADVANCE/VADT support individualized glycemic targets and careful avoidance of hypoglycemia-prone intensification in high-risk patients ([[wiki/trials/accord-advance-vadt|wiki summary]]). |
+| Continue outcome drugs when indicated rather than reflexively stopping them after insulin starts. | SGLT2 and GLP-1 CVOT programs support cardiorenal/ASCVD benefits that are not simply replaced by insulin ([[wiki/trials/sglt2-cvot-program|SGLT2 CVOT Program]], [[wiki/trials/glp1-cvot-program|GLP-1 CVOT Program]]). |
+
 ## Evidence Links
 
 - [[wiki/algorithms/insulin-initiation|Insulin initiation and intensification]]
