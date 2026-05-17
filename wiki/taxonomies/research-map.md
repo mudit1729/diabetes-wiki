@@ -17,6 +17,8 @@ Domain taxonomy for the Diabetes Wiki. Trial and guideline pages should be linke
 ## Clinical Workflow Pages
 
 - [[wiki/algorithms/overview|Doctor-Facing Algorithms]]
+- [[wiki/medications/overview|Medication Pages]]
+- [[wiki/scenarios/overview|Common Clinic Scenarios]]
 - [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
 - [[wiki/algorithms/type-2-diabetes-with-ckd|Type 2 diabetes with CKD]]
 - [[wiki/algorithms/type-2-diabetes-with-ascvd|Type 2 diabetes with ASCVD or high ASCVD risk]]

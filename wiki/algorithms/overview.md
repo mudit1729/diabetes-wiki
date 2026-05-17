@@ -27,6 +27,11 @@ Use these pages as practical, evidence-linked workflows. They are not a substitu
 
 - [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
 
+## Medication and Scenario Pages
+
+- [[wiki/medications/overview|Medication Pages]]
+- [[wiki/scenarios/overview|Common Clinic Scenarios]]
+
 ## General Use
 
 1. Identify the dominant risk domain: CKD, heart failure, ASCVD, hypoglycemia, obesity, cost/access, pregnancy, or acute illness.

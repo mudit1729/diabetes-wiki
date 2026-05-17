@@ -63,3 +63,8 @@ These tables are for clinical orientation. They summarize direction and practica
 - [[wiki/algorithms/type-2-diabetes-with-heart-failure|Type 2 diabetes with heart failure]]
 - [[wiki/algorithms/insulin-initiation|Insulin initiation and intensification]]
 - [[wiki/algorithms/hypoglycemia-risk|Hypoglycemia risk and de-intensification]]
+
+## Medication and Scenario Links
+
+- [[wiki/medications/overview|Medication Pages]]
+- [[wiki/scenarios/overview|Common Clinic Scenarios]]
