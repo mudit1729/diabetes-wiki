@@ -8,6 +8,7 @@ paper_type: trial
 domain: cardiorenal-metabolic
 venue: "New England Journal of Medicine"
 doi: "10.1056/NEJMoa2403347"
+pmid: "38785209"
 source_url: "https://doi.org/10.1056/NEJMoa2403347"
 authors:
   - V. Perkovic
@@ -33,7 +34,7 @@ tags:
 citations: 932
 clinical_review: false
 sources:
-  ocr: ".grounding/md_fc/effects-of-semaglutide-on-chronic-kidney-disease-in-patients-with-type-2-diabete.md"
+  source_pdf: "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2403347.pdf"
   llm_drafted_by: gpt-5.5
   llm_reviewed_by: gpt-5.5
 ingest_date: "2026-05-17"
@@ -59,6 +60,7 @@ Does semaglutide reduce chronic kidney disease progression and cardiovascular de
 - **Composite kidney outcome:** HR 0.79; 95% CI, 0.66-0.94.
 - **Cardiovascular death:** Reduced by 29% (HR 0.71; 95% CI, 0.56-0.89).
 - **eGFR slope:** Improved by 1.16 ml/min/1.73 m² per year (P<0.001).
+- **Serious adverse events:** Lower with semaglutide than placebo (49.6% vs. 53.8%).
 - **NNT:** 20 over 3 years for the primary outcome (95% CI, 14-40).
 
 ## What Changed?
@@ -85,7 +87,7 @@ Semaglutide is a once-weekly injection that can help protect your kidneys and he
 
 ## Related Trials
 
-- **FLOW Trial:** Primary trial showing semaglutide kidney and cardiovascular benefit in type 2 diabetes with CKD.
+- **CREDENCE:** Canagliflozin kidney outcome trial in type 2 diabetes and albuminuric CKD.
 - **EMPA-KIDNEY:** SGLT2 inhibitor kidney outcome trial in CKD; complementary therapeutic context.
 - **AWARD-7:** Dulaglutide study in diabetic kidney disease; GLP-1 receptor agonist context.
 - **SURPASS-4:** Tirzepatide cardiovascular-risk trial with kidney function outcomes for comparison.
