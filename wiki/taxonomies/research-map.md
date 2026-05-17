@@ -14,6 +14,16 @@ clinical_review: false
 
 Domain taxonomy for the Diabetes Wiki. Trial and guideline pages should be linked into these domains as the evidence corpus grows.
 
+## Clinical Workflow Pages
+
+- [[wiki/algorithms/overview|Doctor-Facing Algorithms]]
+- [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
+- [[wiki/algorithms/type-2-diabetes-with-ckd|Type 2 diabetes with CKD]]
+- [[wiki/algorithms/type-2-diabetes-with-ascvd|Type 2 diabetes with ASCVD or high ASCVD risk]]
+- [[wiki/algorithms/type-2-diabetes-with-heart-failure|Type 2 diabetes with heart failure]]
+- [[wiki/algorithms/insulin-initiation|Insulin initiation and intensification]]
+- [[wiki/algorithms/hypoglycemia-risk|Hypoglycemia risk and de-intensification]]
+
 ## Domains
 
 ### Diagnosis / Classification

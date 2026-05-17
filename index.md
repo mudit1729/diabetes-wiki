@@ -19,6 +19,19 @@ Navigation hub for the Diabetes Wiki.
 - [[wiki/guidelines/ada-standards-of-care|ADA Standards of Care]]
 - [[wiki/guidelines/kdigo-diabetes-ckd|KDIGO / ADA-KDIGO Diabetes in CKD]]
 
+## Clinical Algorithms
+
+- [[wiki/algorithms/overview|Doctor-Facing Algorithms]]
+- [[wiki/algorithms/type-2-diabetes-with-ckd|Type 2 diabetes with CKD]]
+- [[wiki/algorithms/type-2-diabetes-with-ascvd|Type 2 diabetes with ASCVD or high ASCVD risk]]
+- [[wiki/algorithms/type-2-diabetes-with-heart-failure|Type 2 diabetes with heart failure]]
+- [[wiki/algorithms/insulin-initiation|Insulin initiation and intensification]]
+- [[wiki/algorithms/hypoglycemia-risk|Hypoglycemia risk and de-intensification]]
+
+## Evidence Tables
+
+- [[wiki/taxonomies/evidence-comparison-tables|Evidence Comparison Tables]]
+
 ## Landmark Trial Anchors
 
 - [[wiki/trials/ukpds|UKPDS]]
