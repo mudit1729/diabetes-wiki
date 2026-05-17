@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Home | {{ repo_title }}{% endblock %}
+
+{% block content %}
+  <div class="stats-bar">
+    <div class="stat-card">
+      <span class="stat-num">{{ stats.domains }}</span>
+      <span class="stat-label">Domains</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ stats.evidence_types }}</span>
+      <span class="stat-label">Evidence Types</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ stats.papers }}</span>
+      <span class="stat-label">Papers</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ stats.tags }}</span>
+      <span class="stat-label">Tags</span>
+    </div>
+  </div>
+
+  <section class="collections-section">
+    <div class="section-heading">
+      <h2>Evidence Collections</h2>
+      <a href="{{ url_for('papers') }}" class="see-all">View all &rarr;</a>
+    </div>
+    <div class="collection-grid">
+      {% for name, papers in evidence.items() %}
+        <div class="collection-card">
+          <div class="collection-header">
+            <h3>{{ name }}</h3>
+            <span class="badge">{{ papers|length }}</span>
+          </div>
+          <ul class="collection-list">
+            {% for p in papers[:5] %}
+              <li>
+                <a href="{{ url_for('page', page_path=p.path) }}">{{ p.title }}</a>
+                {% if p.year %}<span class="year-tag">{{ p.year }}</span>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          {% if papers|length > 5 %}
+            <p class="more-count">+{{ papers|length - 5 }} more</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="collections-section">
+    <div class="section-heading">
+      <h2>Domains</h2>
+    </div>
+    <div class="collection-grid">
+      {% for name, papers in domains.items() %}
+        <div class="collection-card">
+          <div class="collection-header">
+            <h3>{{ name }}</h3>
+            <span class="badge">{{ papers|length }}</span>
+          </div>
+          <ul class="collection-list">
+            {% for p in papers[:5] %}
+              <li>
+                <a href="{{ url_for('page', page_path=p.path) }}">{{ p.title }}</a>
+                {% if p.year %}<span class="year-tag">{{ p.year }}</span>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          {% if papers|length > 5 %}
+            <p class="more-count">+{{ papers|length - 5 }} more</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

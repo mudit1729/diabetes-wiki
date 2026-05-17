@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Evidence | {{ repo_title }}{% endblock %}
+
+{% block content %}
+  <section class="papers-page">
+    <div class="section-heading">
+      <h1>Evidence Library</h1>
+      <p class="muted">{{ papers|length }} entries{% if active_tag %} tagged <span class="tag-pill active">{{ active_tag }}</span>{% endif %}</p>
+    </div>
+
+    <div class="collection-chips">
+      {% for value, label in topics %}
+        <a href="{{ url_for('papers') if value == 'all' else url_for('papers', tag=value) }}" class="chip {% if active_tag == value or (value == 'all' and not active_tag) %}active{% endif %}">{{ label }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="papers-grid">
+      {% for p in papers %}
+        <a class="paper-card" href="{{ url_for('page', page_path=p.path) }}">
+          <div class="paper-card-header">
+            <strong>{{ p.title }}</strong>
+            {% if p.status %}
+              <span class="status-dot status-{{ p.status }}"></span>
+            {% endif %}
+          </div>
+          <div class="paper-card-meta">
+            {% if p.year %}<span class="meta-pill small">{{ p.year }}</span>{% endif %}
+            {% if p.venue %}<span class="meta-pill small">{{ p.venue }}</span>{% endif %}
+            {% if p.paper_type %}<span class="meta-pill small">{{ p.paper_type }}</span>{% endif %}
+            {% if p.citations %}
+              <span class="citation-count">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+                {{ p.citations }}
+              </span>
+            {% endif %}
+          </div>
+          <p>{{ p.excerpt }}</p>
+          {% if p.tags %}
+            <div class="paper-card-tags">
+              {% for tag in p.tags[:4] %}
+                <span class="tag-pill small">{{ tag }}</span>
+              {% endfor %}
+              {% if p.tags|length > 4 %}
+                <span class="tag-pill small muted">+{{ p.tags|length - 4 }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

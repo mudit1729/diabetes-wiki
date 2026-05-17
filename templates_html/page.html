@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ repo_title }}{% endblock %}
+
+{% block content %}
+  <section class="content-layout">
+    <article class="panel article-panel">
+      <div class="article-header">
+        <nav class="breadcrumbs">
+          {% for crumb in breadcrumbs %}
+            {% if crumb.exists %}
+              <a href="{{ url_for('page', page_path=crumb.path) }}">{{ crumb.label }}</a>
+            {% else %}
+              <span>{{ crumb.label }}</span>
+            {% endif %}
+            {% if not loop.last %}<span class="breadcrumb-sep">/</span>{% endif %}
+          {% endfor %}
+        </nav>
+      </div>
+
+      {% if page.tags or page.status or page.page_type %}
+        <div class="article-meta-bar">
+          {% if page.status %}
+            <span class="status-badge status-{{ page.status }}">{{ page.status }}</span>
+          {% endif %}
+          {% if page.page_type %}
+            <span class="type-badge">{{ page.page_type }}</span>
+          {% endif %}
+          {% if page.meta.study_status %}
+            <span class="type-badge">{{ page.meta.study_status }}</span>
+          {% endif %}
+          {% if page.year %}
+            <span class="meta-pill">{{ page.year }}</span>
+          {% endif %}
+          {% if page.venue %}
+            <span class="meta-pill">{{ page.venue }}</span>
+          {% endif %}
+          {% if page.citations %}
+            <span class="citation-count">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+              {{ page.citations }} citations
+            </span>
+          {% endif %}
+          {% if page.tags %}
+            <div class="tag-list">
+              {% for tag in page.tags %}
+                <a href="{{ url_for('tags', t=tag) }}" class="tag-pill">{{ tag }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if page.meta.clinical_review == false or page.meta.clinical_review == 'false' %}
+        <div class="article-meta-bar" style="background:var(--amber-soft); border-left:3px solid var(--amber); padding:0.6rem 0.9rem; margin-bottom:1rem; font-size:0.85rem; color:var(--text-secondary);">
+          <strong style="color:var(--amber);">⚠ Not clinically reviewed.</strong>
+          This summary was drafted by an LLM ({{ page.meta.sources.llm_drafted_by|default('LLM') }}){% if page.meta.sources.llm_reviewed_by %} and reviewed by an LLM ({{ page.meta.sources.llm_reviewed_by }}){% endif %}, not by a clinician.
+          Verify all claims against the original source before clinical use.
+        </div>
+      {% endif %}
+
+      <div class="prose">
+        {{ page.html | safe }}
+      </div>
+    </article>
+
+    <aside class="sidebar-panel">
+      {% if page.meta.source_url or page.meta.doi or page.meta.pmcid %}
+        <div class="sidebar-block">
+          <h3>Source</h3>
+          {% if page.meta.source_url %}
+            <a class="focus-link" href="{{ page.meta.source_url }}" target="_blank" rel="noopener">
+              Open original &rarr;
+            </a>
+          {% endif %}
+          {% if page.meta.doi %}
+            <div class="sidebar-meta">
+              <span class="meta-label">DOI</span>
+              <a href="https://doi.org/{{ page.meta.doi }}" target="_blank" rel="noopener">{{ page.meta.doi }}</a>
+            </div>
+          {% endif %}
+          {% if page.meta.pmcid %}
+            <div class="sidebar-meta">
+              <span class="meta-label">PMC</span>
+              <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/{{ page.meta.pmcid }}/" target="_blank" rel="noopener">{{ page.meta.pmcid }}</a>
+            </div>
+          {% endif %}
+          {% if page.meta.arxiv_id %}
+            <div class="sidebar-meta">
+              <span class="meta-label">arXiv</span>
+              <a href="https://arxiv.org/abs/{{ page.meta.arxiv_id }}" target="_blank" rel="noopener">{{ page.meta.arxiv_id }}</a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="sidebar-block">
+        <h3>Page Info</h3>
+        <div class="sidebar-meta">
+          <span class="meta-label">Path</span>
+          <code>{{ page.path }}.md</code>
+        </div>
+        <div class="sidebar-meta">
+          <span class="meta-label">Outgoing</span>
+          <span>{{ page.links|length }} links</span>
+        </div>
+        <div class="sidebar-meta">
+          <span class="meta-label">Incoming</span>
+          <span>{{ backlinks|length }} backlinks</span>
+        </div>
+      </div>
+
+      {% if backlinks %}
+        <div class="sidebar-block">
+          <h3>Backlinks</h3>
+          <ul class="backlink-list">
+            {% for backlink in backlinks %}
+              <li>
+                <a href="{{ url_for('page', page_path=backlink.path) }}">{{ backlink.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="sidebar-block">
+        <h3>Quick Jump</h3>
+        <div class="quick-links">
+          <a href="{{ url_for('page', page_path='index') }}">Index</a>
+          <a href="{{ url_for('page', page_path='wiki/overview') }}">Overview</a>
+          <a href="{{ url_for('papers') }}">Evidence</a>
+          <a href="{{ url_for('page', page_path='log') }}">Log</a>
+        </div>
+      </div>
+    </aside>
+  </section>
+{% endblock %}
